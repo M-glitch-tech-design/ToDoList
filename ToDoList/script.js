@@ -1,18 +1,19 @@
-const taskInput=document.getElementById("taskInput");
-const taskList=document.getElementById("taskList");
-taskInput.addEventListener("keydown",function(e){
-  if(e.key==="Enter"&&taskInput.value.trim()!==""){
+function addTask(){
+  const taskInput=document.getElementById("taskInput");
+  const taskList=document.getElementById("taskList");
+  const taskText=taskInput.value.trim();
+  if(taskText!==""){
     const listItem=document.createElement("li");
     const checkbox=document.createElement("input");
     checkbox.type="checkbox";
-    const taskText=document.createElement("span");
-    taskText.textContent=taskInput.value;
-    checkbox.addEventListener("change",function(){
+    checkbox.onclick=function(){
       listItem.classList.toggle("completed",checkbox.checked);
-    });
+    };
+    const span=document.createElement("span");
+    span.textContent=taskText;
     listItem.appendChild(checkbox);
-    listItem.appendChild(taskText);
+    listItem.appendChild(span);
     taskList.appendChild(listItem);
     taskInput.value="";
   }
-});
+}
